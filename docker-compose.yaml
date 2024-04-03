@@ -14,7 +14,7 @@ services:
   web:
     build: .
     ports:
-      - "5000:5000"
+      - "5001:5000"
 
     depends_on:
       - db
@@ -32,6 +32,16 @@ services:
     networks:
       - mynetwork
 
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL:{PGADMIN_DEFAULT_EMAIL}
+      - PGADMIN_DEFAULT_PASSWORD:{PGADMIN_DEFAULT_PASSWORD}
+    ports:
+      - "5050:8080"
+    networks:
+      - mynetwork
+      
 networks:
   mynetwork:
 
