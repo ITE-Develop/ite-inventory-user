@@ -1,0 +1,9 @@
+- add ecosystem.config.json to root directory larave project
+- ssh ipserver
+- install git, php, composer, nginx, pm2, nodejs
+- install docker
+- clone repository from github.com/laravelproject
+- configuration larave as env and generate key 
+- migrate configuration database 
+- RUN pm2 start 0
+- RUN pm2 start ecosystem.config.js
