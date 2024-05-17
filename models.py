@@ -1,0 +1,25 @@
+from flask_sqlalchemy import SQLAlchemy
+
+db = SQLAlchemy()
+
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(50), nullable=False)
+    age = db.Column(db.Integer, nullable=False)
+    group = db.Column(db.String, nullable=False)
+    phone_number = db.Column(db.String(20), nullable=False)
+    department = db.Column(db.String, nullable=False)
+    generation = db.Column(db.String, nullable=False)
+
+
+class Products(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    code = db.Column(db.String(50), nullable=False, unique=True)
+    description = db.Column(db.Text)
+    expiry_date = db.Column(db.Date)
+    purchase_date = db.Column(db.Date)
+    location = db.Column(db.String(100))
+    users = db.Column(db.String(255))
+    availability = db.Column(db.String(100)) 

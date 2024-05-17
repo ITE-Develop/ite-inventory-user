@@ -1,2 +1,2 @@
 db_username = admin
-db_password = ite@db001
+db_password = itedb001

@@ -25,7 +25,7 @@ services:
     image: postgres:latest
     environment:
       POSTGRES_USER: admin
-      POSTGRES_PASSWORD: ite@db001
+      POSTGRES_PASSWORD: itedb001
       POSTGRES_DB: postgres
     ports:
       - "5432:5432"
