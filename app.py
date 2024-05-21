@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
-from models import Products, db, User
+from models import Products, db, User, Rooms
 
 
 app = Flask(__name__)
@@ -35,7 +35,9 @@ def create_product():
         purchase_date=data['purchase_date'],
         location=data['location'],
         users=data['users'],
+        category=data['category'],
         availability=data['availability']
+
     )
     new_product = Products(**data)
     db.session.add(new_product)
@@ -57,7 +59,10 @@ def get_products():
             'purchase_date': product.purchase_date,
             'location': product.location,
             'users': product.users,
+            'category': product.category,
             'availability': product.availability
+
+
         }
         for product in products
     ]
@@ -95,6 +100,40 @@ def get_users():
         for user in users
     ]
     return jsonify(users_list)
+
+
+@app.route('/rooms', methods=['POST'])
+def add_room():
+    data = request.get_json()
+    required_keys = ['building', 'chairs', 'num_tables',
+                     'board', 'number']
+
+    if not all(key in data for key in required_keys):
+        return jsonify({'error': 'Missing required fields'}), 400
+
+    new_room = Rooms(**data)
+    db.session.add(new_room)
+    db.session.commit()
+
+    return jsonify({'message': 'Room has been added'}), 201
+
+
+@app.route('/rooms', methods=['GET'])
+def get_rooms():
+    rooms = Rooms.query.all()
+    rooms_list = [
+        {
+            'id': room.id,
+            'building': room.building,
+            'chairs': room.chairs,
+            'num_tables': room.num_tables,
+            'board': room.board,
+            'number': room.number
+        }
+        for room in rooms
+    ]
+
+    return jsonify(rooms_list)
 
 
 if __name__ == '__main__':
