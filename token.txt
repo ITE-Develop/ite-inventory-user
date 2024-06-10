@@ -1,2 +1,28 @@
 db_username = admin
-db_password = ite@db001
+db_password = itedb001
+
+
+
+build docker Container :
+
+docker run -d \
+  --name db \
+  --network mynetwork \
+  -e POSTGRES_USER=admin \
+  -e POSTGRES_PASSWORD=itedb001 \ //don't use @ in password database cuz SQLAlchemy Dont provide use @
+  -e POSTGRES_DB=postgres \
+  -p 5432:5432 \
+  postgres:latest
+
+
+docker run -d \
+  --name pgadmin \
+  --network mynetwork \
+  "PGADMIN_DEFAULT_EMAIL=ite@rupp.edu.kh"\
+  "PGADMIN_DEFAULT_PASSWORD=ite@db001"\ // but Contaner PGADMIN4 can use 
+  -p 80:80 \
+  dpage/pgadmin4
+
+
+Container ID
+b84e6514d8d8 
