@@ -22,3 +22,7 @@ docker run -d \
   "PGADMIN_DEFAULT_PASSWORD=ite@db001"\ // but Contaner PGADMIN4 can use 
   -p 80:80 \
   dpage/pgadmin4
+
+
+Container ID
+b84e6514d8d8 
